@@ -2,10 +2,12 @@ import java.util.ArrayList;
 import java.util.List;
 public class Systemegestion {
     private List<Station> stations;        // Liste des stations
+    private List<Ligne> lignes;        // Liste des lignes
 
     // Constructeur
     public  void Creation(){
         stations = new ArrayList<>();
+        lignes= new ArrayList<>();
     }
 
     //Ajouter une station
@@ -34,5 +36,28 @@ public class Systemegestion {
         }
     }
 
+    // Ajouter une ligne
+    public void AjouterLigne(Ligne ligne){
+        lignes.add(ligne);
+    }
 
+    //Lister les lignes dans l'ordre alphabétique
+
+    // Lister toutes les lignes dans l'ordre alphabétique croissant
+    public void listerLignes() {
+        lignes.sort((l1, l2) -> l1.getNom().compareTo(l2.getNom())); // Tri ascendant
+        System.out.println("Lignes (ordre alphabétique) :");
+        for (Ligne ligne : lignes) {
+            System.out.println(ligne.getNom() + " - " + ligne.getTypeTransport());
+        }
+    }
+
+    // Lister toutes les lignes dans l'ordre alphabétique inverse
+    public void listerLignesInverse() {
+        lignes.sort((l1, l2) -> l2.getNom().compareTo(l1.getNom())); // Tri descendant
+        System.out.println("Lignes (ordre inverse alphabétique) :");
+        for (Ligne ligne : lignes) {
+            System.out.println(ligne.getNom() + " - " + ligne.getTypeTransport());
+        }
+    }
 }
