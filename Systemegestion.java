@@ -1,66 +1,61 @@
 import java.util.ArrayList;
 import java.util.List;
+
 public class Systemegestion {
-    private List<Station> stations;        // Liste des stations
-    private List<Ligne> lignes;        // Liste des lignes
+    private List<Station> stations;
+    private List<Ligne> lignes;
 
     // Constructeur
-    public  void Creation(){
+    public Systemegestion() {
         stations = new ArrayList<>();
-        lignes= new ArrayList<>();
+        lignes = new ArrayList<>();
     }
 
-    //Ajouter une station
-
-    public void Ajouterstation( Station station){
-        stations.add(station);
+    public void Ajouterstation(Station station) {
+        if (!stations.contains(station)) {
+            stations.add(station);
+        }
     }
 
-    // Lister toutes les stations dans l'ordre alphabétique croissant
     public void listerStations() {
-        // Tri des stations par nom dans l'ordre alphabétique croissant
-        stations.sort((s1, s2) -> s1.getNom().compareTo(s2.getNom())); // Tri ascendant
-        System.out.println("Stations (ordre alphabétique) :");
+        stations.sort((s1, s2) -> s1.getNom().compareTo(s2.getNom()));
+        System.out.println("Stations (ordre alphabetique) :");
         for (Station station : stations) {
             System.out.println(station.getNom());
         }
     }
 
-    // Lister toutes les stations dans l'ordre alphabétique inverse
     public void listerStationsInverse() {
-        // Tri des stations par nom dans l'ordre alphabétique inverse
-        stations.sort((s1, s2) -> s2.getNom().compareTo(s1.getNom())); // Tri descendant
-        System.out.println("Stations (ordre inverse alphabétique) :");
+        stations.sort((s1, s2) -> s2.getNom().compareTo(s1.getNom()));
+        System.out.println("Stations (ordre inverse alphabetique) :");
         for (Station station : stations) {
             System.out.println(station.getNom());
         }
     }
 
-    // Ajouter une ligne
-    public void AjouterLigne(Ligne ligne){
-        lignes.add(ligne);
+    public void AjouterLigne(Ligne ligne) {
+        if (!lignes.contains(ligne)) {
+            lignes.add(ligne);
+        }
     }
 
-    //Lister les lignes dans l'ordre alphabétique
-
-    // Lister toutes les lignes dans l'ordre alphabétique croissant
     public void listerLignes() {
-        lignes.sort((l1, l2) -> l1.getNom().compareTo(l2.getNom())); // Tri ascendant
-        System.out.println("Lignes (ordre alphabétique) :");
+        lignes.sort((l1, l2) -> l1.getNom().compareTo(l2.getNom()));
+        System.out.println("Lignes (ordre alphabetique) :");
         for (Ligne ligne : lignes) {
             System.out.println(ligne.getNom() + " - " + ligne.getTypeTransport());
         }
     }
 
-    // Lister toutes les lignes dans l'ordre alphabétique inverse
     public void listerLignesInverse() {
-        lignes.sort((l1, l2) -> l2.getNom().compareTo(l1.getNom())); // Tri descendant
-        System.out.println("Lignes (ordre inverse alphabétique) :");
+        lignes.sort((l1, l2) -> l2.getNom().compareTo(l1.getNom()));
+        System.out.println("Lignes (ordre inverse alphabetique) :");
         for (Ligne ligne : lignes) {
             System.out.println(ligne.getNom() + " - " + ligne.getTypeTransport());
         }
     }
 
+<<<<<<< HEAD
     // Méthode pour afficher les détails d'une station par son nom
     public void afficherDetailsStation(String nomStation) {
         for (Station station : stations) {
@@ -72,3 +67,23 @@ public class Systemegestion {
         System.out.println("Station non trouvée !");
     }
 }
+=======
+    public Station rechercherStationParNom(String nom) {
+        for (Station station : stations) {
+            if (station.getNom().equals(nom)) {
+                return station;
+            }
+        }
+        return null;
+    }
+
+    public Ligne rechercherLigneParNom(String nom) {
+        for (Ligne ligne : lignes) {
+            if (ligne.getNom().equals(nom)) {
+                return ligne;
+            }
+        }
+        return null;
+    }
+}
+>>>>>>> 33301112e884028a28782fa57d4ca1ff536cc534
