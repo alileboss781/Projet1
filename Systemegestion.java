@@ -55,7 +55,6 @@ public class Systemegestion {
         }
     }
 
-<<<<<<< HEAD
     // Méthode pour afficher les détails d'une station par son nom
     public void afficherDetailsStation(String nomStation) {
         for (Station station : stations) {
@@ -66,8 +65,7 @@ public class Systemegestion {
         }
         System.out.println("Station non trouvée !");
     }
-}
-=======
+
     public Station rechercherStationParNom(String nom) {
         for (Station station : stations) {
             if (station.getNom().equals(nom)) {
@@ -86,4 +84,3 @@ public class Systemegestion {
         return null;
     }
 }
->>>>>>> 33301112e884028a28782fa57d4ca1ff536cc534

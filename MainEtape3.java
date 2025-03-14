@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 class Main {
     public static void main(String[] args) {
-        // Création du Systemegestion
         Systemegestion gestion = new Systemegestion();
 
         // Création des stations avec détails
@@ -49,38 +48,13 @@ class Main {
         gestion.Ajouterstation(stationX);
         gestion.Ajouterstation(stationY);
 
-        // Création des lignes
-        Ligne millenium = new Ligne("Millenium", "Metro", Arrays.asList(stationA, stationB, stationC, stationE, stationG, stationK));
-        Ligne heritage = new Ligne("Heritage", "Metro", Arrays.asList(stationJ, stationK, stationG, stationF));
-        Ligne university = new Ligne("University", "Bus", Arrays.asList(stationJ, stationK, stationE));
-        Ligne riverview = new Ligne("Riverview", "Bus", Arrays.asList(stationK, stationG, stationT));
-        Ligne parkland = new Ligne("Parkland", "Tram", Arrays.asList(stationA, stationD));
-        Ligne market = new Ligne("Market", "Tram", Arrays.asList(stationK, stationN));
-        Ligne greenway = new Ligne("Greenway", "Bus", Arrays.asList(stationA, stationB));
-        Ligne southernLoop = new Ligne("Southern Loop", "Bus", Arrays.asList(stationQ, stationR, stationY, stationP));
-
-        // Ajout des lignes au Systemegestion
-        gestion.AjouterLigne(millenium);
-        gestion.AjouterLigne(heritage);
-        gestion.AjouterLigne(university);
-        gestion.AjouterLigne(riverview);
-        gestion.AjouterLigne(parkland);
-        gestion.AjouterLigne(market);
-        gestion.AjouterLigne(greenway);
-        gestion.AjouterLigne(southernLoop);
-
-        // Demande du nom de la ligne à l'utilisateur
+        // Demande du nom de la station à l'utilisateur
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Entrez le nom de la ligne (ex: Southern Loop) : ");
-        String nomLigne = scanner.nextLine();
+        System.out.print("Entrez le nom de la station : ");
+        String nomStation = scanner.nextLine();
 
-        // Recherche et affichage des stations de la ligne
-        Ligne ligneTrouvee = gestion.rechercherLigneParNom(nomLigne);
-        if (ligneTrouvee != null) {
-            ligneTrouvee.afficherDetails();
-        } else {
-            System.out.println("Ligne non trouvée !");
-        }
+        // Affichage des détails de la station
+        gestion.afficherDetailsStation(nomStation);
 
         scanner.close();
     }

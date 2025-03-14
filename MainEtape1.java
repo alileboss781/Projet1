@@ -33,7 +33,7 @@ class Main {
         public void listerStations() {
             // Tri des stations par nom dans l'ordre alphabétique croissant
             stations.sort((s1, s2) -> s1.getNom().compareTo(s2.getNom())); // Tri ascendant
-            System.out.println("Stations (ordre alphabétique) :");
+            System.out.println("Stations (ordre alphabetique) :");
             for (Station station : stations) {
                 System.out.println(station.getNom());
             }
@@ -43,7 +43,7 @@ class Main {
         public void listerStationsInverse() {
             // Tri des stations par nom dans l'ordre alphabétique inverse
             stations.sort((s1, s2) -> s2.getNom().compareTo(s1.getNom())); // Tri descendant
-            System.out.println("Stations (ordre inverse alphabétique) :");
+            System.out.println("Stations (ordre inverse alphabetique) :");
             for (Station station : stations) {
                 System.out.println(station.getNom());
             }
