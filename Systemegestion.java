@@ -63,6 +63,10 @@ public class Systemegestion {
         }
     }
 
+<<<<<<< HEAD
+=======
+    // Méthode pour afficher les détails d'une station par son nom
+>>>>>>> 90619d0f7c90af1d0468131f107e2d61d3e4d300
     public void afficherDetailsStation(String nomStation) {
         for (Station station : stations) {
             if (station.getNom().equalsIgnoreCase(nomStation)) {
@@ -90,6 +94,7 @@ public class Systemegestion {
         }
         return null;
     }
+<<<<<<< HEAD
 
      // Recherche d'itinéraire
     public void rechercherItineraire(String nomDepart, String nomArrivee, boolean optimiserTemps) {
@@ -115,3 +120,6 @@ public class Systemegestion {
         }
     }
 }
+=======
+}
+>>>>>>> 90619d0f7c90af1d0468131f107e2d61d3e4d300

@@ -56,7 +56,7 @@ public class Station {
     public String getDetailsStation() {
         return "Station : " + nom +
                 "\nServices : " + String.join(", ", services) +
-                "\nAccessibilité : " + (accessibilite ? "Oui" : "Non") +
-                "\nCoordonnées GPS : " + latitude + "," + longitude;
+                "\nAccessibilite : " + (accessibilite ? "Oui" : "Non") +
+                "\nCoordonnees GPS : " + latitude + "," + longitude;
     }
 }
