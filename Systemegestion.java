@@ -60,4 +60,15 @@ public class Systemegestion {
             System.out.println(ligne.getNom() + " - " + ligne.getTypeTransport());
         }
     }
+
+    // Méthode pour afficher les détails d'une station par son nom
+    public void afficherDetailsStation(String nomStation) {
+        for (Station station : stations) {
+            if (station.getNom().equalsIgnoreCase(nomStation)) {
+                System.out.println(station.getDetailsStation());
+                return; // On arrête après avoir trouvé la station
+            }
+        }
+        System.out.println("Station non trouvée !");
+    }
 }
