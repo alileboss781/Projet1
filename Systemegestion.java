@@ -1,73 +1,78 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Systemegestion {
     private List<Station> stations;
     private List<Ligne> lignes;
+    private GrapheTransport graphe; // 🟢 Ajout du graphe pour gérer les connexions
 
     // Constructeur
     public Systemegestion() {
         stations = new ArrayList<>();
         lignes = new ArrayList<>();
+        graphe = new GrapheTransport();
     }
 
     public void Ajouterstation(Station station) {
         if (!stations.contains(station)) {
             stations.add(station);
-        }
-    }
-
-    public void listerStations() {
-        stations.sort((s1, s2) -> s1.getNom().compareTo(s2.getNom()));
-        System.out.println("Stations (ordre alphabetique) :");
-        for (Station station : stations) {
-            System.out.println(station.getNom());
-        }
-    }
-
-    public void listerStationsInverse() {
-        stations.sort((s1, s2) -> s2.getNom().compareTo(s1.getNom()));
-        System.out.println("Stations (ordre inverse alphabetique) :");
-        for (Station station : stations) {
-            System.out.println(station.getNom());
+            graphe.ajouterStation(station); // Ajouter la station au graphe
         }
     }
 
     public void AjouterLigne(Ligne ligne) {
         if (!lignes.contains(ligne)) {
             lignes.add(ligne);
+            List<Station> stationsLigne = ligne.getStations();
+
+            // 🟢 Ajout des connexions dans le graphe
+            for (int i = 0; i < stationsLigne.size() - 1; i++) {
+                graphe.ajouterConnexion(stationsLigne.get(i), stationsLigne.get(i + 1), ligne, 5);
+            }
+        }
+    }
+
+    public void listerStations() {
+        stations.sort(Comparator.comparing(Station::getNom));
+        System.out.println("Stations (ordre alphabétique) :");
+        for (Station station : stations) {
+            System.out.println(station.getNom());
+        }
+    }
+
+    public void listerStationsInverse() {
+        stations.sort(Comparator.comparing(Station::getNom).reversed());
+        System.out.println("Stations (ordre inverse alphabétique) :");
+        for (Station station : stations) {
+            System.out.println(station.getNom());
         }
     }
 
     public void listerLignes() {
-        lignes.sort((l1, l2) -> l1.getNom().compareTo(l2.getNom()));
-        System.out.println("Lignes (ordre alphabetique) :");
+        lignes.sort(Comparator.comparing(Ligne::getNom));
+        System.out.println("Lignes (ordre alphabétique) :");
         for (Ligne ligne : lignes) {
             System.out.println(ligne.getNom() + " - " + ligne.getTypeTransport());
         }
     }
 
     public void listerLignesInverse() {
-        lignes.sort((l1, l2) -> l2.getNom().compareTo(l1.getNom()));
-        System.out.println("Lignes (ordre inverse alphabetique) :");
+        lignes.sort(Comparator.comparing(Ligne::getNom).reversed());
+        System.out.println("Lignes (ordre inverse alphabétique) :");
         for (Ligne ligne : lignes) {
             System.out.println(ligne.getNom() + " - " + ligne.getTypeTransport());
         }
     }
 
-<<<<<<< HEAD
-    // Méthode pour afficher les détails d'une station par son nom
     public void afficherDetailsStation(String nomStation) {
         for (Station station : stations) {
             if (station.getNom().equalsIgnoreCase(nomStation)) {
                 System.out.println(station.getDetailsStation());
-                return; // On arrête après avoir trouvé la station
+                return;
             }
         }
         System.out.println("Station non trouvée !");
     }
-}
-=======
+
     public Station rechercherStationParNom(String nom) {
         for (Station station : stations) {
             if (station.getNom().equals(nom)) {
@@ -85,5 +90,28 @@ public class Systemegestion {
         }
         return null;
     }
+
+     // Recherche d'itinéraire
+    public void rechercherItineraire(String nomDepart, String nomArrivee, boolean optimiserTemps) {
+        Station depart = rechercherStationParNom(nomDepart);
+        Station arrivee = rechercherStationParNom(nomArrivee);
+
+        if (depart == null || arrivee == null) {
+            System.out.println("Station(s) introuvable(s) !");
+            return;
+        }
+
+        List<Station> chemin = optimiserTemps
+                ? RechercheItineraire.trouverCheminDijkstra(graphe, depart, arrivee)
+                : RechercheItineraire.trouverCheminBFS(graphe, depart, arrivee);
+
+        if (chemin != null) {
+            System.out.println("Itinéraire trouvé :");
+            for (Station s : chemin) {
+                System.out.println("- " + s.getNom());
+            }
+        } else {
+            System.out.println("Aucun itinéraire trouvé.");
+        }
+    }
 }
->>>>>>> 33301112e884028a28782fa57d4ca1ff536cc534
