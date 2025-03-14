@@ -63,10 +63,10 @@ public class Systemegestion {
         }
     }
 
-<<<<<<< HEAD
-=======
+
+
     // Méthode pour afficher les détails d'une station par son nom
->>>>>>> 90619d0f7c90af1d0468131f107e2d61d3e4d300
+
     public void afficherDetailsStation(String nomStation) {
         for (Station station : stations) {
             if (station.getNom().equalsIgnoreCase(nomStation)) {
@@ -94,32 +94,38 @@ public class Systemegestion {
         }
         return null;
     }
-<<<<<<< HEAD
+
 
      // Recherche d'itinéraire
-    public void rechercherItineraire(String nomDepart, String nomArrivee, boolean optimiserTemps) {
-        Station depart = rechercherStationParNom(nomDepart);
-        Station arrivee = rechercherStationParNom(nomArrivee);
+     public void rechercherItineraire(String nomDepart, String nomArrivee, boolean optimiserTemps) {
+         Station depart = rechercherStationParNom(nomDepart);
+         Station arrivee = rechercherStationParNom(nomArrivee);
 
-        if (depart == null || arrivee == null) {
-            System.out.println("Station(s) introuvable(s) !");
-            return;
-        }
+         if (depart == null || arrivee == null) {
+             System.out.println("Station(s) introuvable(s) !");
+             return;
+         }
 
-        List<Station> chemin = optimiserTemps
-                ? RechercheItineraire.trouverCheminDijkstra(graphe, depart, arrivee)
-                : RechercheItineraire.trouverCheminBFS(graphe, depart, arrivee);
+         List<Station> chemin = optimiserTemps
+                 ? RechercheItineraire.trouverCheminDijkstra(graphe, depart, arrivee)
+                 : RechercheItineraire.trouverCheminBFS(graphe, depart, arrivee);
 
-        if (chemin != null) {
-            System.out.println("Itinéraire trouvé :");
-            for (Station s : chemin) {
-                System.out.println("- " + s.getNom());
-            }
-        } else {
-            System.out.println("Aucun itinéraire trouvé.");
-        }
-    }
+         if (chemin != null) {
+             System.out.println("Itineraire trouve :");
+             double distanceTotale = 0;
+             for (int i = 0; i < chemin.size() - 1; i++) {
+                 Station stationCourante = chemin.get(i);
+                 Station stationSuivante = chemin.get(i + 1);
+                 distanceTotale += stationCourante.calculerDistance(stationSuivante);
+                 System.out.println("- " + stationCourante.getNom());
+             }
+             System.out.println("- " + chemin.get(chemin.size() - 1).getNom()); // Ajouter la dernière station
+             System.out.println("Distance totale : " + distanceTotale + " metres");
+         } else {
+             System.out.println("Aucun itineraire trouve.");
+         }
+     }
 }
-=======
-}
->>>>>>> 90619d0f7c90af1d0468131f107e2d61d3e4d300
+
+
+
