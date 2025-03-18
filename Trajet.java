@@ -1,5 +1,5 @@
 import java.util.*;
-
+//etape 5
 public class Trajet {
     private Station stationDepart;
     private Station stationArrivee;
@@ -33,5 +33,25 @@ public class Trajet {
 
         return details.toString();
     }
+// etape 6
+    public double calculerCout(TypePassager typePassager) {
+        double tarifBase = 1.50;
+        double coutTotal = tarifBase;
+
+        for (Ligne ligne : lignesUtilisees) {
+            double tarifParStation = switch (ligne.getTypeTransport().toLowerCase()) {
+                case "métro" -> 0.40;
+                case "tram" -> 0.30;
+                case "bus" -> 0.20;
+                default -> 0.0;
+            };
+
+            int nombreStations = ligne.getStations().size() - 1;
+            coutTotal += nombreStations * tarifParStation;
+        }
+
+        return coutTotal * typePassager.getCoefficient();
+    }
+
 }
 
