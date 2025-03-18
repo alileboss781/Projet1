@@ -63,6 +63,11 @@ public class Systemegestion {
         }
     }
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 42bc22094660faaa409bc1e99632585bdb173d13
     // Méthode pour afficher les détails d'une station par son nom
 
     public void afficherDetailsStation(String nomStation) {
@@ -95,19 +100,27 @@ public class Systemegestion {
 
 
      // Recherche d'itinéraire
-    public void rechercherItineraire(String nomDepart, String nomArrivee, boolean optimiserTemps) {
-        Station depart = rechercherStationParNom(nomDepart);
-        Station arrivee = rechercherStationParNom(nomArrivee);
+     public void rechercherItineraire(String nomDepart, String nomArrivee, boolean optimiserTemps) {
+         Station depart = rechercherStationParNom(nomDepart);
+         Station arrivee = rechercherStationParNom(nomArrivee);
 
+<<<<<<< HEAD
         if (depart == null || arrivee == null) {
             System.out.println("Station introuvable !");
             return;
         }
+=======
+         if (depart == null || arrivee == null) {
+             System.out.println("Station(s) introuvable(s) !");
+             return;
+         }
+>>>>>>> 42bc22094660faaa409bc1e99632585bdb173d13
 
-        List<Station> chemin = optimiserTemps
-                ? RechercheItineraire.trouverCheminDijkstra(graphe, depart, arrivee)
-                : RechercheItineraire.trouverCheminBFS(graphe, depart, arrivee);
+         List<Station> chemin = optimiserTemps
+                 ? RechercheItineraire.trouverCheminDijkstra(graphe, depart, arrivee)
+                 : RechercheItineraire.trouverCheminBFS(graphe, depart, arrivee);
 
+<<<<<<< HEAD
         if (chemin != null) {
             System.out.println("Itinéraire trouvé :");
             for (Station s : chemin) {
@@ -175,3 +188,24 @@ public class Systemegestion {
 }
 
 
+=======
+         if (chemin != null) {
+             System.out.println("Itineraire trouve :");
+             double distanceTotale = 0;
+             for (int i = 0; i < chemin.size() - 1; i++) {
+                 Station stationCourante = chemin.get(i);
+                 Station stationSuivante = chemin.get(i + 1);
+                 distanceTotale += stationCourante.calculerDistance(stationSuivante);
+                 System.out.println("- " + stationCourante.getNom());
+             }
+             System.out.println("- " + chemin.get(chemin.size() - 1).getNom()); // Ajouter la dernière station
+             System.out.println("Distance totale : " + distanceTotale + " metres");
+         } else {
+             System.out.println("Aucun itineraire trouve.");
+         }
+     }
+}
+
+
+
+>>>>>>> 42bc22094660faaa409bc1e99632585bdb173d13
