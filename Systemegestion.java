@@ -63,11 +63,11 @@ public class Systemegestion {
         }
     }
 
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 42bc22094660faaa409bc1e99632585bdb173d13
+
+
+
     // Méthode pour afficher les détails d'une station par son nom
 
     public void afficherDetailsStation(String nomStation) {
@@ -104,12 +104,12 @@ public class Systemegestion {
          Station depart = rechercherStationParNom(nomDepart);
          Station arrivee = rechercherStationParNom(nomArrivee);
 
-<<<<<<< HEAD
+
         if (depart == null || arrivee == null) {
             System.out.println("Station introuvable !");
             return;
         }
-=======
+
          if (depart == null || arrivee == null) {
              System.out.println("Station(s) introuvable(s) !");
              return;
@@ -208,4 +208,4 @@ public class Systemegestion {
 
 
 
->>>>>>> 42bc22094660faaa409bc1e99632585bdb173d13
+
