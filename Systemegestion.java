@@ -3,7 +3,7 @@ import java.util.*;
 public class Systemegestion {
     private List<Station> stations;
     private List<Ligne> lignes;
-    private GrapheTransport graphe; // 🟢 Ajout du graphe pour gérer les connexions
+    private GrapheTransport graphe; //  Ajout du graphe pour gérer les connexions
 
     // Constructeur
     public Systemegestion() {
@@ -24,7 +24,7 @@ public class Systemegestion {
             lignes.add(ligne);
             List<Station> stationsLigne = ligne.getStations();
 
-            // 🟢 Ajout des connexions dans le graphe
+            //  Ajout des connexions dans le graphe
             for (int i = 0; i < stationsLigne.size() - 1; i++) {
                 graphe.ajouterConnexion(stationsLigne.get(i), stationsLigne.get(i + 1), ligne, 5);
             }
@@ -63,10 +63,8 @@ public class Systemegestion {
         }
     }
 
-<<<<<<< HEAD
-=======
     // Méthode pour afficher les détails d'une station par son nom
->>>>>>> 90619d0f7c90af1d0468131f107e2d61d3e4d300
+
     public void afficherDetailsStation(String nomStation) {
         for (Station station : stations) {
             if (station.getNom().equalsIgnoreCase(nomStation)) {
@@ -94,7 +92,7 @@ public class Systemegestion {
         }
         return null;
     }
-<<<<<<< HEAD
+
 
      // Recherche d'itinéraire
     public void rechercherItineraire(String nomDepart, String nomArrivee, boolean optimiserTemps) {
@@ -102,7 +100,7 @@ public class Systemegestion {
         Station arrivee = rechercherStationParNom(nomArrivee);
 
         if (depart == null || arrivee == null) {
-            System.out.println("Station(s) introuvable(s) !");
+            System.out.println("Station introuvable !");
             return;
         }
 
@@ -119,7 +117,61 @@ public class Systemegestion {
             System.out.println("Aucun itinéraire trouvé.");
         }
     }
+          // étape 5
+
+    public void afficherDetailsItineraire(String nomDepart, String nomArrivee, boolean optimiserTemps) {
+        Station depart = rechercherStationParNom(nomDepart);
+        Station arrivee = rechercherStationParNom(nomArrivee);
+
+        if (depart == null || arrivee == null) {
+            System.out.println(" Station introuvable !");
+            return;
+        }
+
+        List<Station> chemin = optimiserTemps
+                ? RechercheItineraire.trouverCheminDijkstra(graphe, depart, arrivee)
+                : RechercheItineraire.trouverCheminBFS(graphe, depart, arrivee);
+
+        if (chemin == null) {
+            System.out.println(" Aucun itinéraire trouvé.");
+            return;
+        }
+
+        List<Ligne> lignesUtilisees = new ArrayList<>();
+        List<Station> correspondances = new ArrayList<>();
+
+        // Identifier les lignes utilisées et les correspondances
+        for (int i = 0; i < chemin.size() - 1; i++) {
+            Station actuelle = chemin.get(i);
+            Station suivante = chemin.get(i + 1);
+
+            Ligne ligneCommune = trouverLigneCommune(actuelle, suivante);
+            if (ligneCommune != null) {
+                if (!lignesUtilisees.contains(ligneCommune)) {
+                    lignesUtilisees.add(ligneCommune);
+                    if (i > 0) {
+                        correspondances.add(actuelle);
+                    }
+                }
+            }
+        }
+
+        // Création du trajet et affichage des détails
+        Trajet trajet = new Trajet(depart, arrivee, lignesUtilisees, correspondances);
+        System.out.println(trajet.getDetailsItineraire());
+    }
+
+    // Méthode pour trouver la ligne commune entre deux stations
+    private Ligne trouverLigneCommune(Station s1, Station s2) {
+        for (Ligne ligne : lignes) {
+            if (ligne.getStations().contains(s1) && ligne.getStations().contains(s2)) {
+                return ligne;
+            }
+        }
+        return null;
+    }
+
+
 }
-=======
-}
->>>>>>> 90619d0f7c90af1d0468131f107e2d61d3e4d300
+
+
