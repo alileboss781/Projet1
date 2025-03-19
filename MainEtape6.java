@@ -26,6 +26,7 @@ class Main {
         Station stationX = new Station("Xenobiotics Research Centre", 52.635908, 1.306150, true, Arrays.asList("Distributeurs"));
         Station stationY = new Station("York Road", 52.635092, 1.269632, true, Arrays.asList("Guichet"));
 
+
         // Ajout des stations au Systemegestion
         gestion.Ajouterstation(stationA);
         gestion.Ajouterstation(stationB);
@@ -67,15 +68,28 @@ class Main {
         gestion.AjouterLigne(greenway);
         gestion.AjouterLigne(southernLoop);
 
-        // Demande des stations de départ et d'arrivée à l'utilisateur
+
+        // Demande du type de passager
         Scanner scanner = new Scanner(System.in);
+        System.out.print("Entrez le type de passager (REGULIER, ETUDIANT, SENIOR, HANDICAPE) : ");
+        String typePassagerStr = scanner.nextLine();
+
+        TypePassager typePassager = null;
+        try {
+            typePassager = TypePassager.valueOf(typePassagerStr.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Type de passager invalide. Utilisation du tarif REGULIER par défaut.");
+            typePassager = TypePassager.REGULIER;
+        }
+
+        // Demande des stations de départ et d'arrivée
         System.out.print("Entrez le nom de la station de depart : ");
         String nomDepart = scanner.nextLine();
         System.out.print("Entrez le nom de la station d'arrivee : ");
         String nomArrivee = scanner.nextLine();
 
-        // Recherche de l'itinéraire et affichage des détails
-        gestion.afficherDetailsItineraire(nomDepart, nomArrivee, true);
+        // Affichage du coût de l'itinéraire
+        gestion.afficherCoutItineraire(nomDepart, nomArrivee, typePassager);
 
         scanner.close();
     }

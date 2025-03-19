@@ -67,15 +67,39 @@ class Main {
         gestion.AjouterLigne(greenway);
         gestion.AjouterLigne(southernLoop);
 
-        // Demande des stations de départ et d'arrivée à l'utilisateur
+        // Demande du type de passager
         Scanner scanner = new Scanner(System.in);
+        System.out.print("Entrez le type de passager (REGULIER, ETUDIANT, SENIOR, HANDICAPE) : ");
+        String typePassagerStr = scanner.nextLine();
+
+        TypePassager typePassager = null;
+        try {
+            typePassager = TypePassager.valueOf(typePassagerStr.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Type de passager invalide. Utilisation du tarif REGULIER par défaut.");
+            typePassager = TypePassager.REGULIER;
+        }
+
+        // Demande du critère de recherche
+        System.out.print("Entrez le critère de recherche (COUT, RAPIDITE, CORRESPONDANCES) : ");
+        String critereStr = scanner.nextLine();
+
+        Critere critere = null;
+        try {
+            critere = Critere.valueOf(critereStr.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Critère invalide. Utilisation de RAPIDITE par défaut.");
+            critere = Critere.RAPIDITE;
+        }
+
+        // Demande des stations de départ et d'arrivée
         System.out.print("Entrez le nom de la station de depart : ");
         String nomDepart = scanner.nextLine();
         System.out.print("Entrez le nom de la station d'arrivee : ");
         String nomArrivee = scanner.nextLine();
 
-        // Recherche de l'itinéraire et affichage des détails
-        gestion.afficherDetailsItineraire(nomDepart, nomArrivee, true);
+        // Recherche de l'itinéraire et affichage des détails avec coût
+        gestion.afficherDetailsItineraire(nomDepart, nomArrivee, critere, typePassager);
 
         scanner.close();
     }

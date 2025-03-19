@@ -69,8 +69,8 @@ class Main {
         // Demander à l'utilisateur quel ordre il veut
         Scanner scanner = new Scanner(System.in);
         System.out.println("Choisissez un ordre pour afficher les stations :");
-        System.out.println("1 - Ordre alphabétique");
-        System.out.println("2 - Ordre inverse alphabétique");
+        System.out.println("1 - Ordre alphabetique");
+        System.out.println("2 - Ordre inverse alphabetique");
         int choix = scanner.nextInt();
 
         // Afficher les stations selon le choix de l'utilisateur
