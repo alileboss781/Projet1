@@ -244,5 +244,70 @@ public class Systemegestion {
         System.out.printf("Cout total du trajet pour un %s : %.2f euro\n", typePassager.name().toLowerCase(), cout);
     }
 
+    public void rechercherItineraireAvecCriteres(String nomDepart, String nomArrivee, TypeItineraire critere, TypePassager typePassager) {
+        Station depart = rechercherStationParNom(nomDepart);
+        Station arrivee = rechercherStationParNom(nomArrivee);
+
+<<<<<<< HEAD
+}
+=======
+        if (depart == null || arrivee == null) {
+            System.out.println(" Station(s) introuvable(s) !");
+            return;
+        }
+
+        List<Station> chemin;
+        switch (critere) {
+            case MOINS_ARRETS:
+                chemin = RechercheItineraire.trouverCheminBFS(graphe, depart, arrivee);
+                break;
+            case PLUS_RAPIDE:
+                chemin = RechercheItineraire.trouverCheminDijkstra(graphe, depart, arrivee);
+                break;
+            case MOINS_CHER:
+                chemin = RechercheItineraire.trouverCheminMoinsCher(graphe, depart, arrivee);
+                break;
+            default:
+                System.out.println("Critère non valide !");
+                return;
+        }
+
+        if (chemin == null) {
+            System.out.println("Aucun itinéraire trouvé.");
+            return;
+        }
+
+        List<Ligne> lignesUtilisees = new ArrayList<>();
+        List<Station> correspondances = new ArrayList<>();
+
+        for (int i = 0; i < chemin.size() - 1; i++) {
+            Station actuelle = chemin.get(i);
+            Station suivante = chemin.get(i + 1);
+            Ligne ligneCommune = trouverLigneCommune(actuelle, suivante);
+
+            if (ligneCommune != null) {
+                if (!lignesUtilisees.contains(ligneCommune)) {
+                    lignesUtilisees.add(ligneCommune);
+                    if (i > 0) {
+                        correspondances.add(actuelle);
+                    }
+                }
+            }
+        }
+
+        Trajet trajet = new Trajet(depart, arrivee, lignesUtilisees, correspondances);
+        double cout = trajet.calculerCout(typePassager);
+
+        System.out.println(trajet.getDetailsItineraire());
+        System.out.printf(" Coût total du trajet pour un %s : %.2f €\n", typePassager.name().toLowerCase(), cout);
+    }
 
 }
+
+
+
+
+
+
+
+>>>>>>> 0d0dc7e3a8265a62c15f32b53d4b007cc38bd29f
