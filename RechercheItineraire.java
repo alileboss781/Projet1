@@ -57,4 +57,42 @@ public class RechercheItineraire {
         Collections.reverse(chemin);
         return chemin.isEmpty() ? null : chemin;
     }
+
+    public static List<Station> trouverCheminMoinsCher(GrapheTransport graphe, Station depart, Station arrivee) {
+        Map<Station, Double> couts = new HashMap<>();
+        Map<Station, Station> predecesseurs = new HashMap<>();
+        PriorityQueue<Station> file = new PriorityQueue<>(Comparator.comparingDouble(couts::get));
+
+        couts.put(depart, 0.0);
+        file.add(depart);
+
+        while (!file.isEmpty()) {
+            Station actuelle = file.poll();
+            if (actuelle.equals(arrivee)) break;
+
+            for (Connexion voisin : graphe.getVoisins(actuelle)) {
+                double coutLigne = switch (voisin.getLigne().getTypeTransport().toLowerCase()) {
+                    case "métro" -> 0.40;
+                    case "tram" -> 0.30;
+                    case "bus" -> 0.20;
+                    default -> 1.0;
+                };
+
+                double nouveauCout = couts.get(actuelle) + coutLigne;
+                if (nouveauCout < couts.getOrDefault(voisin.getDestination(), Double.MAX_VALUE)) {
+                    couts.put(voisin.getDestination(), nouveauCout);
+                    predecesseurs.put(voisin.getDestination(), actuelle);
+                    file.add(voisin.getDestination());
+                }
+            }
+        }
+
+        List<Station> chemin = new ArrayList<>();
+        for (Station at = arrivee; at != null; at = predecesseurs.get(at)) {
+            chemin.add(at);
+        }
+        Collections.reverse(chemin);
+        return chemin.isEmpty() ? null : chemin;
+    }
+
 }
