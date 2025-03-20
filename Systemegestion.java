@@ -248,9 +248,9 @@ public class Systemegestion {
         Station depart = rechercherStationParNom(nomDepart);
         Station arrivee = rechercherStationParNom(nomArrivee);
 
-<<<<<<< HEAD
-}
-=======
+
+
+
         if (depart == null || arrivee == null) {
             System.out.println(" Station(s) introuvable(s) !");
             return;
@@ -299,7 +299,7 @@ public class Systemegestion {
         double cout = trajet.calculerCout(typePassager);
 
         System.out.println(trajet.getDetailsItineraire());
-        System.out.printf(" Coût total du trajet pour un %s : %.2f €\n", typePassager.name().toLowerCase(), cout);
+        System.out.printf(" Cout total du trajet pour un %s : %.2f euro\n", typePassager.name().toLowerCase(), cout);
     }
 
 }
@@ -310,4 +310,4 @@ public class Systemegestion {
 
 
 
->>>>>>> 0d0dc7e3a8265a62c15f32b53d4b007cc38bd29f
+

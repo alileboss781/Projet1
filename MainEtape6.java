@@ -5,27 +5,33 @@ class Main {
     public static void main(String[] args) {
         Systemegestion gestion = new Systemegestion();
 
-        // Création des stations (avec coordonnées exactes)
-        Station stationA = new Station("Ashford Road", 52.650219, 1.298729, true, Arrays.asList("Guichet", "Distributeurs"));
-        Station stationB = new Station("Brookside Avenue", 52.647986, 1.285355, true, Arrays.asList("Distributeurs"));
-        Station stationC = new Station("Castle Hill", 52.648781, 1.307894, false, Arrays.asList("Aucun service"));
-        Station stationD = new Station("Dunham End", 52.648780, 1.276361, true, Arrays.asList("Guichet"));
-        Station stationE = new Station("Eastbourne West", 52.646091, 1.287257, true, Arrays.asList("Distributeurs", "Toilettes"));
-        Station stationF = new Station("Fairfields", 52.646091, 1.287257, false, Arrays.asList("Aucun service"));
-        Station stationG = new Station("GrandCentral", 52.640381, 1.289051, true, Arrays.asList("Guichet", "Distributeurs", "Commerces"));
-        Station stationH = new Station("Ivy Lane", 52.643648, 1.281168, true, Arrays.asList("Distributeurs"));
-        Station stationJ = new Station("High Street", 52.643759, 1.305971, true, Arrays.asList("Guichet", "Distributeurs"));
-        Station stationK = new Station("Market Square", 52.638825, 1.296614, true, Arrays.asList("Guichet", "Distributeurs", "Commerces"));
-        Station stationN = new Station("Northgate Shopping Centre", 52.639920, 1.307381, true, Arrays.asList("Distributeurs", "Commerces"));
-        Station stationP = new Station("Parkside Place", 52.638098, 1.273221, false, Arrays.asList("Aucun service"));
-        Station stationQ = new Station("Queensbridge", 52.633614, 1.278604, true, Arrays.asList("Distributeurs"));
-        Station stationR = new Station("Riverside", 52.632524, 1.273477, true, Arrays.asList("Guichet", "Distributeurs"));
-        Station stationT = new Station("Town Hall", 52.637348, 1.288603, true, Arrays.asList("Distributeurs", "Toilettes"));
-        Station stationU = new Station("Union Street", 52.633147, 1.295627, false, Arrays.asList("Aucun service"));
-        Station stationW = new Station("Waterfront", 52.632563, 1.299113, true, Arrays.asList("Guichet", "Distributeurs"));
-        Station stationX = new Station("Xenobiotics Research Centre", 52.635908, 1.306150, true, Arrays.asList("Distributeurs"));
-        Station stationY = new Station("York Road", 52.635092, 1.269632, true, Arrays.asList("Guichet"));
-
+        // Création des stations avec détails
+        Station stationA = new Station("Ashford Road", 48.8566, 2.3522, true, Arrays.asList("Guichet", "Distributeurs"));
+        Station stationB = new Station("Brookside Avenue", 48.8570, 2.3525, true, Arrays.asList("Distributeurs"));
+        Station stationC = new Station("Castle Hill", 48.8575, 2.3530, false, Arrays.asList("Aucun service"));
+        Station stationD = new Station("Dunham End", 48.8580, 2.3535, true, Arrays.asList("Guichet"));
+        Station stationE = new Station("Eastbourne West", 48.8585, 2.3540, true, Arrays.asList("Distributeurs", "Toilettes"));
+        Station stationF = new Station("Fairfields", 52.644776, 1.290910, false, Arrays.asList("Aucun service"));
+        Station stationG = new Station("GrandCentral", 48.8595, 2.3550, true, Arrays.asList("Guichet", "Distributeurs", "Commerces"));
+        Station stationH = new Station("High Street", 48.8605, 2.3560, true, Arrays.asList("Guichet", "Distributeurs"));
+        Station stationJ = new Station("Market Square", 48.8610, 2.3565, true, Arrays.asList("Guichet", "Distributeurs", "Commerces")); // Renommée depuis Market Place
+        Station stationK = new Station("Northgate Shopping Centre", 48.8615, 2.3570, true, Arrays.asList("Distributeurs", "Commerces"));
+        Station stationN = new Station("Northgate Shopping Centre", 52.639920, 1.307381, true, Arrays.asList("Distributeurs", "Commerces")); // Coordonnées mises à jour
+        Station stationP = new Station("Parkside Place", 48.8625, 2.3580, false, Arrays.asList("Aucun service"));
+        Station stationQ = new Station("Queensbridge", 48.8630, 2.3585, true, Arrays.asList("Distributeurs"));
+        Station stationR = new Station("Riverside", 48.8635, 2.3590, true, Arrays.asList("Guichet", "Distributeurs"));
+        Station stationT = new Station("Town Hall", 48.8640, 2.3595, true, Arrays.asList("Distributeurs", "Toilettes"));
+        Station stationU = new Station("Union Street", 48.8645, 2.3600, false, Arrays.asList("Aucun service"));
+        Station stationW = new Station("Waterfront", 48.8650, 2.3605, true, Arrays.asList("Guichet", "Distributeurs"));
+        Station stationX = new Station("Xenobiotics Research Centre", 48.8655, 2.3610, true, Arrays.asList("Distributeurs"));
+        Station stationY = new Station("York Road", 48.8660, 2.3615, true, Arrays.asList("Guichet"));
+        Station stationL = new Station("Lakeside", 52.644776, 1.300267, true, Arrays.asList("Distributeurs")); // Coordonnées mises à jour
+        Station stationM = new Station("Market Square", 52.638825, 1.296614, true, Arrays.asList("Distributeurs")); // Coordonnées mises à jour et renommée
+        Station stationO = new Station("Oakwoods", 52.637931, 1.282890, true, Arrays.asList("Distributeurs")); // Coordonnées mises à jour
+        Station stationI = new Station("Ivy Lane", 52.643648, 1.281168, true, Arrays.asList("Distributeurs")); // Coordonnées mises à jour
+        Station stationS = new Station("Southbank Place", 0, 0, true, Arrays.asList("Distributeurs")); // Coordonnées à définir
+        Station stationV = new Station("Victoria Docks", 52.635325, 1.300011, true, Arrays.asList("Distributeurs")); // Coordonnées mises à jour
+        Station stationZ = new Station("Zephyr Close", 52.651503, 1.280014, true, Arrays.asList("Distributeurs")); // Coordonnées mises à jour
 
         // Ajout des stations au Systemegestion
         gestion.Ajouterstation(stationA);
@@ -47,16 +53,23 @@ class Main {
         gestion.Ajouterstation(stationW);
         gestion.Ajouterstation(stationX);
         gestion.Ajouterstation(stationY);
+        gestion.Ajouterstation(stationL);
+        gestion.Ajouterstation(stationM);
+        gestion.Ajouterstation(stationO);
+        gestion.Ajouterstation(stationI);
+        gestion.Ajouterstation(stationS);
+        gestion.Ajouterstation(stationV);
+        gestion.Ajouterstation(stationZ);
 
         // Création des lignes
-        Ligne millenium = new Ligne("Millenium", "Metro", Arrays.asList(stationA, stationB, stationC, stationE, stationG, stationK));
-        Ligne heritage = new Ligne("Heritage", "Metro", Arrays.asList(stationJ, stationK, stationG, stationF));
-        Ligne university = new Ligne("University", "Bus", Arrays.asList(stationJ, stationK, stationE));
-        Ligne riverview = new Ligne("Riverview", "Bus", Arrays.asList(stationK, stationG, stationT));
-        Ligne parkland = new Ligne("Parkland", "Tram", Arrays.asList(stationA, stationD));
-        Ligne market = new Ligne("Market", "Tram", Arrays.asList(stationK, stationN));
-        Ligne greenway = new Ligne("Greenway", "Bus", Arrays.asList(stationA, stationB));
-        Ligne southernLoop = new Ligne("Southern Loop", "Bus", Arrays.asList(stationQ, stationR, stationY, stationP));
+        Ligne millenium = new Ligne("Millenium", "Metro", Arrays.asList(stationJ, stationK, stationG, stationM, stationN));
+        Ligne heritage = new Ligne("Heritage", "Metro", Arrays.asList(stationA, stationB, stationF, stationG, stationT));
+        Ligne university = new Ligne("University", "Bus", Arrays.asList(stationA, stationC, stationH, stationN, stationX, stationV));
+        Ligne riverview = new Ligne("Riverview", "Bus", Arrays.asList(stationS, stationU, stationW, stationV));
+        Ligne parkland = new Ligne("Parkland", "Tram", Arrays.asList(stationP, stationJ, stationK, stationS, stationG, stationE, stationB));
+        Ligne market = new Ligne("Market", "Tram", Arrays.asList(stationE, stationF, stationM, stationJ));
+        Ligne greenway = new Ligne("Greenway", "Bus", Arrays.asList(stationZ, stationD, stationK, stationG, stationF, stationL, stationH));
+        Ligne southernLoop = new Ligne("Southern Loop", "Bus", Arrays.asList(stationQ, stationP, stationY, stationR, stationQ, stationO, stationI, stationE));
 
         // Ajout des lignes au Systemegestion
         gestion.AjouterLigne(millenium);
